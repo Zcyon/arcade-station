@@ -1,0 +1,45 @@
+<div class="container">
+    <br>
+    <div class="row">
+        <div class="col s12">
+            <h5>¡Alimenta al Input!</h5>
+            <p><span class="orange-text">Inpy</span> es un input de texto <span class="orange-text">muy glotón</span>. Le encanta que las personas escriban texto en él para comerse todos y cada uno de los caracteres. Lamentablemente, esto le ha llevado a tener un metabolismo muy acelerado, derivando en la necesidad de tener que alimentarse constantemente o morir de hambre.</p>
+            <p>Una vez que comience el juego, Inpy comenzará a exigir que escribas en él; trata de mantenerlo con vida el mayor tiempo posible... Si obtienes una buena puntuación obtendrás una <span class="orange-text">clave</span>.</p>
+            <p>No te preocupes si Inpy muere, es un input, así que <span class="orange-text">sólo tendríamos que reinstanciarlo</span> para tenerlo de vuelta, ¿no? :)</p>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col s12">
+            <h6>Salud de Inpy</h6>
+            <div class="progress orange lighten-4">
+                <div id="inpyHealthBar" class="determinate orange" style="width:100%"></div>
+            </div>
+            <h6 class="right-align">{{ 'Tu Tiempo: ' + time + ' segundos' }}</h6>
+            <h6 class="right-align">Récord Mundial Irreversible e Irrevocable: 90 segundos</h6>
+        </div>
+    </div>
+
+    <div class="row" ng-hide="inpyIsAlive === false">
+        <div class="col s12 center-align">
+            <img class="responsive-img" src="images/inpyeyes.png" alt="Ojos de Inpy">
+        </div>
+    </div>
+
+    <div class="row" ng-hide="inpyIsAlive === true">
+        <div class="col s12 center-align">
+            <img src="images/inpyeyesded.png" alt="Inpy Murió" class="responsive-img">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12">
+            <div class="input-field">
+                <input type="text" id="inpyInput" placeholder="¡Aliméntame!">
+                <label for="inpyInput">Inpy</label>
+            </div>
+            <a class="btn waves-light waves-effect orange right" id="playButton">iniciar juego</a>
+        </div>
+    </div>
+    <br>
+</div>

@@ -32,6 +32,11 @@ angular
         controller: 'CryptographCtrl',
         controllerAs: 'cryptograph'
       })
+      .when('/buttonmash', {
+        templateUrl: 'views/buttonmash.html',
+        controller: 'ButtonmashCtrl',
+        controllerAs: 'buttonmash'
+      })
       .otherwise({
         redirectTo: '/'
       });

@@ -8,5 +8,8 @@
  * Controller of the enigmaApp
  */
 angular.module('enigmaApp')
-  .controller('MainCtrl', function () {
+  .controller('MainCtrl', function ($scope, $window) {
+    $scope.$on('$routeChangeStart', function () {
+      $window.scrollTo(0, 0);
+    });
   });
