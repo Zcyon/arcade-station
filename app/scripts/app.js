@@ -42,6 +42,11 @@ angular
         controller: 'NimgameCtrl',
         controllerAs: 'nimgame'
       })
+      .when('/jukebox', {
+        templateUrl: 'views/jukebox.html',
+        controller: 'JukeboxCtrl',
+        controllerAs: 'jukebox'
+      })
       .otherwise({
         redirectTo: '/'
       });
