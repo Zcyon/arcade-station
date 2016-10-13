@@ -1,0 +1,71 @@
+<div class="container">
+    <br>
+    <div class="row">
+        <div class="col s12 m12">
+            <h5>Juego de Nim</h5>
+            <p><span class="orange-text">Avenídano</span> es una IA bastante particular. Su juego favorito es el <span class="orange-text">juego de Nim</span>, y está dispuesto a darte una <span class="orange-text">clave</span> si logras vencerlo más de <span class="orange-text">5 veces seguidas</span>.</p>
+            <p>Las reglas del <span class="orange-text">juego de Nim</span> son bastante sencillas:</p>
+            <ul>
+                <li>- En cada turno, un jugador tiene la oportunidad de recoger uno, dos o tres fósforos.</li>
+                <li>- El objetivo del juego es hacer que el oponente tenga que tomar el último fósforo.</li>
+                <li>- La cantidad de turnos es ilimitada, en teoría, pero todos los juegos siempre terminan rápido.</li>    
+            </ul>
+            <p>Una advertencia... ¡<span class="orange-text">Avenídano es un mal perdedor</span>!</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12 m3 center-align">
+            <h5>Tú</h5>
+            <br>
+            <p>Tomarás</p>
+            <input type="number" id="takeInput" min="1" max="3">
+            <p>fósforo(s)</p>
+            <div class="center-align">
+                <button class="btn orange" id="pickButton">tomar</button>
+            </div>
+        </div>
+        <div class="col s12 m6">
+            <div class="row" ng-show="gameStatus === 'game'">
+                <div class="col s2 center-align" ng-repeat="stick in getSticks() track by $index">
+                    |
+                </div>
+            </div>
+        </div>
+        <div class="col s12 m3 center-align">
+            <h5>Avenídano</h5>
+            <br>
+            <p>Ha tomado</p>
+            <h5>{{ aveTakenMatches }}</h5>
+            <p>fósforo(s)</p>
+            <div ng-show="aveIsThinking === true">
+                <div class="preloader-wrapper small active">
+                    <div class="spinner-layer spinner-yellow-only">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div><div class="gap-patch">
+                        <div class="circle"></div>
+                    </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                    </div>
+                </div>
+                <p><span class="orange-text">Avenídano</span> está pensando.</p>
+            </div>
+            <img ng-show="aveIsThinking === false" src="images/pizza.png" alt="Pizza Steve" class="responsive-img">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12">
+            <h5 class="center-align">{{ 'Racha de victorias: ' + winStreak }}</h5>
+        </div>
+    </div>
+
+    <div class="row center-align">
+        <div class="col s12">
+            <a id="playButton" class="btn orange waves-effect waves-light">iniciar juego</a>
+        </div>
+    </div>
+    <br>
+</div>

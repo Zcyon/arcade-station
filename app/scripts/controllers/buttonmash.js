@@ -63,7 +63,8 @@ angular.module('enigmaApp')
     ];
 
     function sendInpyMessage() {
-      Materialize.toast(inpyMessages[gameStatus][Math.floor(Math.random() * 3)], inpyMessageWaitTime);
+      let arrayLength = inpyMessages[gameStatus].length;
+      Materialize.toast(inpyMessages[gameStatus][Math.floor(Math.random() * arrayLength)], inpyMessageWaitTime);
       inpyMessageBleep.play();
     }
 
@@ -111,16 +112,22 @@ angular.module('enigmaApp')
     function endGame() {
       let $playButton, $inpyInput;
       $inpyInput = $(inpyInputId);
-      $inpyInput.attr('disabled', true);
       $playButton = $(playButtonId);
+
+//    Interface preparation
+      $inpyInput.attr('disabled', true);
+      $playButton.attr('disabled', false);
       $playButton.html('REINICIAR JUEGO');
+
+//    Actual game stop 
       $interval.cancel(timeInterval);
       gameStatus = 'postgame';
       $scope.inpyIsAlive = false;
       inpyDieBleep.play();
 
-      if (time > 90) {
-        Materialize.toast('INPY<br>Bien, bien, bien... Me mantuviste vivo durante más de 90 segundos. Aquí tienes tu código: 44558787981015');
+//    If the user beat the score...
+      if ($scope.time > 90) {
+        Materialize.toast('INPY<br>Bien, bien, bien... Me mantuviste vivo durante más de 90 segundos. Aquí tienes tu código: 44558787981015<br>(Doble clic para resaltarlo)');
       }
     }
 
@@ -137,33 +144,46 @@ angular.module('enigmaApp')
       $inpyInput = $(inpyInputId);
       inpyBuffer = $inpyInput.val();
 
+//    First we check if there's something in Inpy's buffer
       if (inpyBuffer.length > 0) {
+        // This is used to prevent repeated keystrokes
         actualChar = inpyBuffer.substr(0, 1);
         inpyBuffer = inpyBuffer.substr(1, inpyBuffer.length);
 
+        // If somebody tries to break the game...
         if (previousChar === actualChar) {
+          // ... They get punished
           hurt(2);
         }
 
         previousChar = actualChar;
         $inpyInput.val(inpyBuffer);
       } else {
-        // Consume health
+        // If there's nothing, then Inpy gets hurt
         hurt(1);
         renderHealth();
       }
 
+//    This is done to prevent any additional repetition of this function
       if (gameStatus === 'game') {
         $timeout(eat, inpyEatIntervalTime - inpyEatSpeed);
       }
     }
 
     function startGame() {
-      let $inpyInput;
-      $inpyInput = $(inpyInputId);
+      let $inpyInput, $playButton;
+      $inpyInput  = $(inpyInputId);
+      $playButton = $(playButtonId);
+
+//    Interface preparation
+      $playButton.attr('disabled', true);
       $inpyInput.attr('disabled', false);
+      
+//    Game preparation
       reboot();
       gameStatus = 'game';
+
+//    Actual game startup 
       timeInterval = $interval(countSeconds, timeIntervalTime);
       $timeout(eat, inpyEatIntervalTime - inpyEatSpeed);
       $inpyInput.focus();

@@ -37,6 +37,11 @@ angular
         controller: 'ButtonmashCtrl',
         controllerAs: 'buttonmash'
       })
+      .when('/nimgame', {
+        templateUrl: 'views/nimgame.html',
+        controller: 'NimgameCtrl',
+        controllerAs: 'nimgame'
+      })
       .otherwise({
         redirectTo: '/'
       });
