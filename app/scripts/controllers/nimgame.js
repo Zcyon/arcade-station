@@ -20,7 +20,7 @@ angular.module('enigmaApp')
     pickButtonId = '#pickButton';
     takeInputId  = '#takeInput';
 
-    sticksAmount = 31;
+    sticksAmount = 11;
     isYourTurn   = true;
 
     aveMessageIntervalTime = 10000;
@@ -84,8 +84,10 @@ angular.module('enigmaApp')
     }
 
     function take(tk) {
-      let $takeInput, takenMatches, gameStatus, aveIsThinking;
+      let $takeInput, $pickButton, takenMatches, gameStatus, aveIsThinking;
       $takeInput   = $(takeInputId);
+      $pickButton  = $(pickButtonId);
+      $pickButton.attr('disabled', true);
       aveIsThinking = $scope.aveIsThinking;
       tk = parseInt(tk, 10);
       console.log(tk);
@@ -121,8 +123,9 @@ angular.module('enigmaApp')
 
     function aveTurn() {
       // console.log('It\'s his turn!');
-      let isAveTurn, $pickButton, takenMatches,aveIsThinking;
+      let isAveTurn, $pickButton, $takeInput, takenMatches, aveIsThinking;
       $pickButton   = $(pickButtonId);
+      $takeInput    = $(takeInputId);
       isAveTurn     = angular.copy(isYourTurn);
       aveIsThinking = $scope.aveIsThinking;
       takenMatches = Math.floor(Math.random() * 2) + 1;
@@ -136,12 +139,17 @@ angular.module('enigmaApp')
       } else {
         $scope.aveTakenMatches = takenMatches;
         $pickButton.attr('disabled', false);
+        $takeInput.focus();
         $scope.$apply();
       }
     }
 
     $(playButtonId).click(startGame);
     $(pickButtonId).click(take);
+
+    $scope.$on('$routeChangeStart', function stop() {
+      $interval.cancel(aveMessagesInterval);
+    });
 
     $(document).ready(function init() {
       let $pickButton;
