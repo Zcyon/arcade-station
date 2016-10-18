@@ -170,8 +170,8 @@ angular.module('enigmaApp')
 
       // Interface preparation
       $playButton.attr('disabled', false);
-      $pickButton.attr('disabled', true);
       $playButton.html('reiniciar juego');
+      $pickButton.attr('disabled', true);
       $scope.gameStatus = gameStatus;
       $scope.winStreak  = winStreak;
       $scope.$apply();
@@ -210,7 +210,6 @@ angular.module('enigmaApp')
       }
 
       if (sticksAmount <= 0) {
-        $pickButton.attr('disabled', true);
         endGame();
       } else {
         if (isYourTurn === false) {
@@ -218,6 +217,8 @@ angular.module('enigmaApp')
           aveIsThinking  = true;
           $scope.aveIsThinking = aveIsThinking;
           aveTurnTimeout = $timeout(aveTurn, aveTurnTimeoutTime);
+        } else {
+          $pickButton.attr('disabled', false);
         }
         $scope.$apply();
       }
@@ -225,8 +226,7 @@ angular.module('enigmaApp')
 
     function aveTurn() {
       // console.log('It\'s his turn!');
-      let isAveTurn, $pickButton, $takeInput, takenMatches, aveIsThinking;
-      $pickButton   = $(pickButtonId);
+      let isAveTurn, $takeInput, takenMatches, aveIsThinking;
       $takeInput    = $(takeInputId);
       isAveTurn     = angular.copy(isYourTurn);
       aveIsThinking = $scope.aveIsThinking;
@@ -245,7 +245,6 @@ angular.module('enigmaApp')
         aveTurn();
       } else {
         $scope.aveTakenMatches = takenMatches;
-        $pickButton.attr('disabled', false);
         $takeInput.focus();
         $scope.$apply();
       }

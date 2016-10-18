@@ -9,6 +9,14 @@ body {
   padding: 0;
 }
 
+.light-borders {
+  border-radius: 5%;
+}
+
+#decryptedTextarea  {
+  height: 500px;
+}
+
 .widen {
   min-width: 100%;
 }
@@ -26,7 +34,7 @@ li a:active {
 }
 
 .logo-img {
-  margin-top: 5px;
+  margin-top: 7px;
 }
 
 textarea:focus {

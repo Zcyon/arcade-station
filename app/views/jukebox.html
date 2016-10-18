@@ -1,1 +1,54 @@
-<p>This is the jukebox view.</p>
+<div class="container">
+    <div class="row">
+        <br>
+        <div class="col s12">
+            <h5>Jukebox</h5>
+            <p>En este juego deberás reproducir las notas que se te presenten en el orden correcto, reproduciendo la canción que verás en la pantalla. Date prisa en memorizarla porque <span class="orange-text">sólo la verás durante un tiempo</span>.</p>
+            <p>Si consigues acertar 5 canciones en racha, <span class="orange-text">Link</span> te entregará una <span class="orange-text">clave</span>.</p>
+            <p>Usa las teclas WASD para hacer referencia a las <span class="orange-text">notas amarillas</span>, y la tecla X para la <span class="orange-text">nota azul</span>.</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 m7">
+            <div class="row">
+                <h5 class="center-align orange-text">Melodía de Link</h5>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <h5 class="center-align grey-text">{{ songTitle }}</h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s2 m2" ng-repeat="linkNote in linkNotes track by $index">
+                    <img class="responsive-img" ng-src="{{ linkNote.getIconSource() }}">
+                </div>
+            </div>
+            <div class="row">
+                <h5 class="center-align orange-text">Tu Melodía</h5>
+            </div>
+            <div class="row">
+                <div class="col s2 m2" ng-repeat="yourNotes in yourNotes track by $index">
+                    <img class="responsive-img" ng-src="{{ yourNotes.getIconSource() }}">
+                </div>
+            </div>
+        </div>
+        <div class="col s12 m5">
+            <div class="row">
+                <div class="col s12">
+                    <img src="images/link.png" alt="Link" class="responsive-img">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <p class="center-align">{{ 'Racha de Aciertos: ' + winStreak }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 center-align">
+            <a class="btn orange">iniciar juego</a>
+        </div>
+    </div>
+    <br>
+</div>

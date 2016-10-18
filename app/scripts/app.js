@@ -47,7 +47,18 @@ angular
         controller: 'JukeboxCtrl',
         controllerAs: 'jukebox'
       })
+      .when('/author', {
+        templateUrl: 'views/author.html',
+        controller: 'AuthorCtrl',
+        controllerAs: 'author'
+      })
       .otherwise({
         redirectTo: '/'
       });
+  })
+  // Broadcasts key events down the scope chain
+  .run(function($document, $rootScope){
+    $document.bind('keyup', function(e) {
+      $rootScope.$broadcast('keypress', e);
+    });
   });
