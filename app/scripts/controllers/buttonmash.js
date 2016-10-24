@@ -63,13 +63,13 @@ angular.module('enigmaApp')
     ];
 
     function sendInpyMessage() {
-      let arrayLength = inpyMessages[gameStatus].length;
+      var arrayLength = inpyMessages[gameStatus].length;
       Materialize.toast(inpyMessages[gameStatus][Math.floor(Math.random() * arrayLength)], inpyMessageWaitTime);
       inpyMessageBleep.play();
     }
 
     function countSeconds() {
-      let time;
+      var time;
       time = $scope.time;
       time++;
 
@@ -91,7 +91,7 @@ angular.module('enigmaApp')
     }
 
     function renderHealth() {
-      let $inpyHealthBar, actualHealth;
+      var $inpyHealthBar, actualHealth;
       $inpyHealthBar = $(inpyHealthBarId);
 
       actualHealth = (inpyHealth * 100)/inpyMAX_HEALTH;
@@ -110,7 +110,7 @@ angular.module('enigmaApp')
     }
 
     function endGame() {
-      let $playButton, $inpyInput;
+      var $playButton, $inpyInput;
       $inpyInput = $(inpyInputId);
       $playButton = $(playButtonId);
 
@@ -140,7 +140,7 @@ angular.module('enigmaApp')
     }
 
     function eat() {
-      let $inpyInput, inpyBuffer, actualChar;
+      var $inpyInput, inpyBuffer, actualChar;
       $inpyInput = $(inpyInputId);
       inpyBuffer = $inpyInput.val();
 
@@ -171,7 +171,7 @@ angular.module('enigmaApp')
     }
 
     function startGame() {
-      let $inpyInput, $playButton;
+      var $inpyInput, $playButton;
       $inpyInput  = $(inpyInputId);
       $playButton = $(playButtonId);
 
@@ -198,7 +198,7 @@ angular.module('enigmaApp')
 
 
     $(document).ready(function init() {
-      let $inpyInput;
+      var $inpyInput;
       $inpyInput = $(inpyInputId);
       $inpyInput.attr('disabled', true);
       inpyMessageInterval = $interval(sendInpyMessage, inpyMessageIntervalTime);

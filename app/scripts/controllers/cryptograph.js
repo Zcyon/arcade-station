@@ -21,8 +21,6 @@ angular.module('enigmaApp')
       var ord = [];
       var buf = "";
   
-      //for (var z = 1; z <= 255; z++) {ord[String.fromCharCode(z)] = z}
-  
       for (var j = z = 0; z < txt.length; z++) {
           buf += String.fromCharCode(txt.charCodeAt(z) ^ pass.charCodeAt(j));
           j = (j < pass.length) ? j + 1 : 0
@@ -33,7 +31,7 @@ angular.module('enigmaApp')
     }
 
     function decode() {
-      let $passwordInput, $encryptedTextarea, $decryptedTextarea;
+      var $passwordInput, $encryptedTextarea, $decryptedTextarea;
       $passwordInput      = $(passwordInputId);
       $encryptedTextarea  = $(encryptedTextareaId);
       $decryptedTextarea = $(decryptedTextareaId);
@@ -45,9 +43,9 @@ angular.module('enigmaApp')
     $(decodeButtonId).click(decode);
 
     $(document).ready(function init() {
-      let txt = 'Hi, how are you?';
-      let pass = 'aws';
-      let encoded = xorEncode(txt, pass);
+      var txt = 'Hi, how are you?';
+      var pass = 'aws';
+      var encoded = xorEncode(txt, pass);
       console.log('Encoded string: ', encoded);
       console.log('Decoded string: ', xorEncode(encoded, pass));
     });

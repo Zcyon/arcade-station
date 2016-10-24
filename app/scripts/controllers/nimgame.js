@@ -105,7 +105,7 @@ angular.module('enigmaApp')
     ];
 
     $scope.getSticks = function getSticks() {
-      return Array(sticksAmount);
+      return new Array(sticksAmount);
     };
 
     function reboot() {
@@ -114,7 +114,7 @@ angular.module('enigmaApp')
     }
 
     function sendAveMessage() {
-      let arrayLength, winStreak, gameStatus;
+      var arrayLength, winStreak, gameStatus;
       winStreak  = $scope.winStreak;
       gameStatus = $scope.gameStatus;
 
@@ -135,7 +135,7 @@ angular.module('enigmaApp')
     }
 
     function startGame() {
-      let $playButton, $pickButton;
+      var $playButton, $pickButton;
       $playButton = $(playButtonId);
       $pickButton = $(pickButtonId);
       $playButton.attr('disabled', true);
@@ -147,7 +147,7 @@ angular.module('enigmaApp')
     }
 
     function endGame() {
-      let gameStatus, $playButton, $pickButton, winStreak;
+      var gameStatus, $playButton, $pickButton, winStreak;
       winStreak   = $scope.winStreak;
       $playButton = $(playButtonId);
       $pickButton = $(pickButtonId);
@@ -178,7 +178,7 @@ angular.module('enigmaApp')
     }
 
     function take(tk) {
-      let $takeInput, $pickButton, takenMatches, gameStatus, aveIsThinking;
+      var $takeInput, $pickButton, takenMatches, gameStatus, aveIsThinking;
       $takeInput   = $(takeInputId);
       $pickButton  = $(pickButtonId);
       
@@ -226,7 +226,7 @@ angular.module('enigmaApp')
 
     function aveTurn() {
       // console.log('It\'s his turn!');
-      let isAveTurn, $takeInput, takenMatches, aveIsThinking;
+      var isAveTurn, $takeInput, takenMatches, aveIsThinking;
       $takeInput    = $(takeInputId);
       isAveTurn     = angular.copy(isYourTurn);
       aveIsThinking = $scope.aveIsThinking;
@@ -258,7 +258,7 @@ angular.module('enigmaApp')
     });
 
     $(document).ready(function init() {
-      let $pickButton;
+      var $pickButton;
       $pickButton = $(pickButtonId);
       $pickButton.attr('disabled', true);
       aveMessagesInterval = $interval(sendAveMessage, aveMessageIntervalTime);
